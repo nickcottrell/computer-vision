@@ -15,4 +15,4 @@ _Face detection_
 ![Open CV Object Recognition](/OpenCVUnity/opencv-objects.png)
 _Object Recognition_
 ![Open CV Contours](/OpenCVUnity/opencv-contours.png)
-_Contour Live Sketch Filter_
+_Edge Detection_
