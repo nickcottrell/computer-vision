@@ -4,8 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 OpenCVPlusUnity/Assets/AssetStoreTools*
-OpenCVForUnity/OpenCVForUnity*
-OpenCVForUnity/StreamingAssets*
+OpenCVForUnity/Assets/OpenCVForUnity*
+OpenCVForUnity/Assets/StreamingAssets*
 
 # Visual Studio 2015 cache directory
 /.vs/
