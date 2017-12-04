@@ -10,9 +10,9 @@ So far, this project incorporates the Open CV + Unity asset bundle (not included
 * Object Recognition
 * Marker detection
 
-![Open CV Face Recognition](/OpenCVUnity/opencv-facerec.png)
+![Open CV Face Recognition](/OpenCVPlusUnity/opencv-facerec.png)
 _Face detection_
-![Open CV Object Recognition](/OpenCVUnity/opencv-objects.png)
+![Open CV Object Recognition](/OpenCVPlusUnity/opencv-objects.png)
 _Object Recognition_
-![Open CV Contours](/OpenCVUnity/opencv-contours.png)
+![Open CV Contours](/OpenCVPlusUnity/opencv-contours.png)
 _Edge Detection_
