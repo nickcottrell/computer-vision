@@ -25,5 +25,5 @@ _Edge Detection_
 
 A quick example was an app that I made that detects a face and subsequently activates objects. In this case, I activated a "Happy Birthday" sound effect and confetti video object. I was able to wire this up in just a few minutes. This is a silly example of how you can use Unity and Open CV. Next up will be to detect the face location and attach an object to it.
 
-![Open CV Face Detection](/OpenCVForUnity/open-cv-happybirthday.png)
+![Open CV Face Detection](/OpenCVForUnity/open-cv-happybirthday2.png)
 _Happy Birthday! Face detection..._
