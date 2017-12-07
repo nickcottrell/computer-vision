@@ -39,9 +39,15 @@ using OpenCVForUnity;
 	OpenCVForUnityExample.WebCamTextureToMatHelper webCamTextureToMatHelper;
 
 
+		public GameObject m_partyHat;
+
+		private float elPosX;
+		private float elPosY;
+		
+		//private Vector2 elPos = new Vector2(0.0f,0.0f);
+
 		//**************** MY STUFF *******
 		public GameObject partyObject;
-
 
         #if UNITY_WEBGL && !UNITY_EDITOR
         Stack<IEnumerator> coroutines = new Stack<IEnumerator> ();
@@ -52,6 +58,8 @@ using OpenCVForUnity;
         {
 			//**************** MY STUFF *******
 			partyObject.SetActive (false);
+			//Instantiate (m_partyHat, elPos, Quaternion.identity);
+
 
 		webCamTextureToMatHelper = gameObject.GetComponent<OpenCVForUnityExample.WebCamTextureToMatHelper> ();
 
@@ -140,6 +148,18 @@ using OpenCVForUnity;
             Debug.Log ("OnWebCamTextureToMatHelperErrorOccurred " + errorCode);
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
         // Update is called once per frame
         void Update ()
         {
@@ -158,31 +178,80 @@ using OpenCVForUnity;
                 
                 OpenCVForUnity.Rect[] rects = faces.toArray ();
                 for (int i = 0; i < rects.Length; i++) {
-                    //              Debug.Log ("detect faces " + rects [i]);
                     
                     Imgproc.rectangle (rgbaMat, new Point (rects [i].x, rects [i].y), new Point (rects [i].x + rects [i].width, rects [i].y + rects [i].height), new Scalar (255, 0, 0, 255), 2);
-                }
-
-
-				//**************** MY STUFF *******
-
-				Debug.Log (rects.Length);
-
-				if (rects.Length > 0) {
-					partyObject.SetActive (true);
-		
-					Debug.Log ("Face detected!!!");
-				} else {
-					Debug.Log ("No face yet!");
+					
+					//make the coordinates for the rectangle accessible
+					elPosX = rects [i].x + rects [i].width;
+					elPosY = rects [i].y + rects [i].height;
 				}
 
-			
+	
+				
+				if (rects.Length > 0) {
+		
+					//yay we see a face
+					Debug.Log ("Update: Face detected!!!");
+					//start the party (once)
+					//partyObject.SetActive (true);
+					//set the hat graphic true
+					//TODO: need to figure out a way for this to not flicker so much
+					//m_partyHat.SetActive (true);
+					//update the position of the hat
+					// TODO: need to provide an offset based on the size of the rectangle (i think!)
+					m_partyHat.transform.position = new Vector3 (elPosX, elPosY, 0);
+
+				} else {
+					//set the hat graphic false
+					Debug.Log ("Update: No face yet!");
+					//m_partyHat.SetActive (false);
+				}
+
+			//float elPosX = rects [0].x;
+			//float elPosX = 400f;
+			//float elPosY = rects [0].y;
+			//float elPosY = 100f;
+			//Debug.Log (elPosX + ", " + elPosY);
+
+			//m_partyHat.transform.position = new Vector3 (elPosX, elPosY, 0);
+
                 
 //              Imgproc.putText (rgbaMat, "W:" + rgbaMat.width () + " H:" + rgbaMat.height () + " SO:" + Screen.orientation, new Point (5, rgbaMat.rows () - 10), Core.FONT_HERSHEY_SIMPLEX, 1.0, new Scalar (255, 255, 255, 255), 2, Imgproc.LINE_AA, false);
                 
                 Utils.matToTexture2D (rgbaMat, texture, webCamTextureToMatHelper.GetBufferColors ());
             }
         }
+
+
+
+
+	void FixedUpdate ()
+	{
+
+
+			OpenCVForUnity.Rect[] rectsfx = faces.toArray ();
+
+			if (rectsfx.Length > 0) {
+
+				//yay we see a face
+				Debug.Log ("Fixed Update: Face detected!!!");
+				//start the party (once)
+				partyObject.SetActive (true);
+				//set the hat graphic true
+				//TODO: need to figure out a way for this to not flicker so much
+				m_partyHat.SetActive (true);
+			} else {
+				//set the hat graphic false
+				Debug.Log ("Fixed Update:No face yet!");
+				m_partyHat.SetActive (false);
+
+			}
+			
+		}
+
+
+
+
 
         /// <summary>
         /// Raises the destroy event.
